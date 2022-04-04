@@ -1,7 +1,7 @@
 <html>
 <head>
     <title> Play Tetris </title>
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="main.css?rnd=@Function.GUID~">
 </head>
 <body>
 <ul>
@@ -12,12 +12,18 @@
 <div class="main">
     <div class="form">
         <div class="tetris" id="tetris-bg">
+            <?php
+            require 'connect.php';
+            include 'authenticate.php';
+            ?>
+            <script type="text/javascript" src="tetris.js"></script>
 
-        <?php
-        require 'connect.php';
-        include 'authenticate.php';
-        echo "<p> WELCOME TO TETRIS</p>";
-        ?>
+            <br>
+            <button onclick="tetris(this)">Start the game</button>
+            <p id="score" class="score"></p>
+            <br>
+
+
         </div>
     </div>
 </div>

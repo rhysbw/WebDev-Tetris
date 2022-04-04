@@ -68,7 +68,7 @@
             }
         }
         if (isset($_GET['username'])){
-
+            //login
 
             // Remove slashes
             $Username = stripslashes($_GET['username']);

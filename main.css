@@ -14,6 +14,28 @@ li {
     float: left;
     border: 1px solid #606060;
 }
+button{
+    position: center;
+    background: black;
+    color: white;
+    font-size: 20px;
+}
+#button{
+    display: none;
+}
+#topColumn{
+    background: blue;
+    font-size: 20px;
+}
+table{
+    border: 2px solid;
+    border-spacing: 2px;
+    width: 100%;
+}
+td{
+    text-align: center;
+}
+
 .tetris{
     background-image: url("tetris-grid-bg.png");
     background-repeat: no-repeat;
@@ -21,6 +43,10 @@ li {
     background-position: center;
     size: auto;
     height: 600px;
+}
+.score{
+    font-size: 20px;
+    background: white;
 }
 
 .main{

@@ -49,6 +49,7 @@ function countdown(x){
         if(timeleft <= 0){
             clearInterval(downloadTimer);
             document.getElementById("score").innerHTML = "Your score was: "+score
+            //this progress bar is to show the countdown for the 'gameplay'
             document.getElementById("progressBar").style.display = 'none';
             postScore(score);
             pauseMusic();
@@ -56,18 +57,18 @@ function countdown(x){
             document.getElementById("progressBar").value = 10 - timeleft;
         }
         timeleft -= 1;
-    }, 500);
+    }, 1000);
 }
 
-function getRandomIntInclusive() {
+function getRandomIntInclusive() { //generates the 'score' for the game
     min = Math.ceil(0);
     max = Math.floor(1000);
     return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
 }
 function tetris(x){
-    playMusic();
+    playMusic(); // plays the background music for tetris
     score = getRandomIntInclusive();
-    x.style.display = 'none';
-    countdown(10);
+    x.style.display = 'none'; // hides the start the game
+    countdown(5); // starts the countdown
 
 }

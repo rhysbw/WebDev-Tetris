@@ -1,7 +1,7 @@
 <html>
 <head>
     <title> Play Tetris </title>
-    <link rel="stylesheet" href="main.css?rnd=@Function.GUID~">
+    <link rel="stylesheet" href="main.css?rnd=23">
 </head>
 <body>
 <ul>
@@ -12,6 +12,7 @@
 <div class="main">
     <div class="form">
         <div class="tetris" id="tetris-bg">
+            <audio id="audio" src="tetris-gameboy-02.mp3"></audio>
             <?php
             require 'connect.php';
             include 'authenticate.php';
@@ -21,6 +22,7 @@
             <br>
             <button onclick="tetris(this)">Start the game</button>
             <p id="score" class="score"></p>
+            <progress value="0" max="10" id="progressBar"></progress>
             <br>
 
 

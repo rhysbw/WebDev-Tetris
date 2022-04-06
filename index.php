@@ -1,7 +1,7 @@
 <html>
 <head>
         <title>LANDING PAGE</title>
-        <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="main.css?rnd=23">
 </head>
 <body>
 <ul>
@@ -50,7 +50,22 @@
                         <h2>Passwords do not match</h2>
                         <br/>
                         <a href='register.php'>Try Again</a></div>";
-            }else{
+            }
+            elseif ($stmt = $conn->prepare('SELECT * FROM Users WHERE UserName = ?')){
+                $stmt->bind_param('s',$UserName);
+                $stmt->execute();
+                $stmt->store_result();
+                if ($stmt ->num_rows >0){
+                    $stmt->bind_result($test);
+                    $stmt->fetch();
+                    echo "
+                        <div class='form'>
+                        <h2>Username was taken.</h2>
+                        <br/>
+                        Click here to <a href='register.php'>Try Again</a></div>";
+                }
+                $stmt->close();
+            } else{
                 //NEED TO ADD CHECK FOR SAME USERNAME
                 //sql query
                 $sql = "INSERT INTO Users VALUES('".$UserName."','".$FirstName."','".$LastName."','".$Password."','".$DisplayVal."');";

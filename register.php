@@ -1,7 +1,7 @@
 <html>
 <head>
     <title>Registration</title>
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="main.css?rnd=23">
 </head>
 <body>
 <ul>
@@ -22,7 +22,7 @@ if (!isset($_REQUEST['username'])){
         <input type="text" name="username" placeholder="Username" required/>
         <input type="password" name="password" placeholder="Password" required/>
         <input type="password" name="confirmPassword" placeholder="Confirm Password" required/>
-        <input type="radio" id="yes" name="display" value="YES">
+        <input type="radio" id="yes" name="display" value="YES" checked="checked">
         <label for="yes">YES</label><br>
         <input type="radio" id="no" name="display" value="NO">
         <label for="no">NO</label><br>

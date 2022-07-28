@@ -23,6 +23,7 @@
     <a href='logout.php'>Logout</a> </div>";
     }else{
         if (isset($_POST['username'])){
+            echo "is set";
             // if a registration is sent
             // this removes any backslashes that would cause an error
             $UserName = stripslashes($_POST['username']);
@@ -52,10 +53,11 @@
                         <a href='register.php'>Try Again</a></div>";
             }
             elseif ($stmt = $conn->prepare('SELECT * FROM Users WHERE UserName = ?')){
+                echo "checking";
                 $stmt->bind_param('s',$UserName);
                 $stmt->execute();
                 $stmt->store_result();
-                if ($stmt ->num_rows >0){
+                if ($stmt ->num_rows >0){ // if username was taken
                     $stmt->bind_result($test);
                     $stmt->fetch();
                     echo "
@@ -63,23 +65,24 @@
                         <h2>Username was taken.</h2>
                         <br/>
                         Click here to <a href='register.php'>Try Again</a></div>";
-                }
-                $stmt->close();
-            } else{
-                //NEED TO ADD CHECK FOR SAME USERNAME
-                //sql query
-                $sql = "INSERT INTO Users VALUES('".$UserName."','".$FirstName."','".$LastName."','".$Password."','".$DisplayVal."');";
+                    $stmt->close();
+                }else{ // this was the change - else statement was inside a set of brackets - bruh
+                    echo "not taken";
+                    //sql query
+                    $sql = "INSERT INTO Users VALUES('".$UserName."','".$FirstName."','".$LastName."','".$Password."','".$DisplayVal."');";
 
-                $result = mysqli_query($conn,$sql);
-                if ($result){
-                    echo "  <div class='form'>
+                    $result = mysqli_query($conn,$sql);
+                    if ($result){
+                        echo "  <div class='form'>
                             <h3>You are registered successfully.</h3>
                             <br/>Click here to <a href='index.php'>Login</a></div>";
-                }else{
-                    echo "INCORRECT REGISTRING";
-                    echo "Error: ".mysqli_error($conn);
+                    }else{
+                        echo "INCORRECT REGISTRING";
+                        echo "Error: ".mysqli_error($conn);
+                    }
+                    mysqli_close($conn);
                 }
-                mysqli_close($conn);
+
             }
         }
         if (isset($_GET['username'])){
